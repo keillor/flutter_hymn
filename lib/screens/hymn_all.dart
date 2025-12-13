@@ -83,7 +83,7 @@ class HymnAllPage extends StatelessWidget {
                           text: h.number.toString(),
                           textStyle: const TextStyle(color: Colors.white),
                         ),
-                        title: Text('${h.words.substring(0,25)}'),
+                        title: Text(h.words.substring(0,25)),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
