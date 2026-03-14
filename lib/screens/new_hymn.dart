@@ -65,7 +65,7 @@ class _NewHymnPageState extends State<NewHymnPage> {
   Future<bool> _showMyDialog() async {
     final bool? dialogResult = await showDialog<bool>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Hymn number already exists!'),
@@ -120,7 +120,6 @@ class _NewHymnPageState extends State<NewHymnPage> {
 								style: TextStyle(fontWeight: FontWeight.w600),
 							),
 							const SizedBox(height: 8),
-							// Single-line title field
 							TextField(
 								controller: _titleController,
 								maxLines: 1,
@@ -137,7 +136,6 @@ class _NewHymnPageState extends State<NewHymnPage> {
 								style: TextStyle(fontWeight: FontWeight.w600),
 							),
 							const SizedBox(height: 8),
-							// Multiline plain text field — pressing Enter inserts a newline.
 							Expanded(
 								child: TextField(
                   textAlign: .start,

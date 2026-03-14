@@ -7,14 +7,12 @@ import 'package:path_provider/path_provider.dart';
 class FavoriteCart extends Cart {
   FavoriteCart._internal(super.cartName);
 
-  /// Creates a FavoriteCart and loads all favorite hymns from the database.
   static Future<FavoriteCart> create() async {
     final cart = FavoriteCart._internal('Favorites');
     await cart.loadFavorites();
     return cart;
   }
 
-  /// Loads all favorite hymns from the database.
   Future<void> loadFavorites() async {
     final favorites = await getFavoriteHymns();
     hymns.clear();
@@ -22,7 +20,6 @@ class FavoriteCart extends Cart {
     notifyListeners();
   }
 
-  /// Adds a hymn to favorites (both DB and local list).
   Future<bool> addFavoriteHymn(Hymn hymn) async {
     final success = await addFavorite(hymn.number);
     if (success && !hymns.any((h) => h.number == hymn.number)) {
@@ -32,7 +29,6 @@ class FavoriteCart extends Cart {
     return success;
   }
 
-  /// Removes a hymn from favorites (both DB and local list).
   Future<bool> removeFavoriteHymn(int hymnNumber) async {
     final success = await removeFavorite(hymnNumber);
     if (success) {
@@ -42,7 +38,6 @@ class FavoriteCart extends Cart {
     return success;
   }
 
-  /// Checks if a hymn is in the favorites list.
   bool containsHymn(int hymnNumber) {
     return hymns.any((h) => h.number == hymnNumber);
   }

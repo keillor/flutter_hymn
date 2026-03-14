@@ -76,9 +76,6 @@ DO UPDATE SET
   return true;
 }
 
-/// Creates the favorite table if it doesn't exist.
-/// The favorite table stores hymn numbers that are marked as favorites.
-/// Call this once on app startup.
 Future<void> createFavoriteTable() async {
   final path = await _prepareDb();
   final db = sqlite3.open(path);
@@ -94,7 +91,6 @@ Future<void> createFavoriteTable() async {
   }
 }
 
-/// Checks if a hymn is marked as favorite.
 Future<bool> isFavorite(int hymnNumber) async {
   final path = await _prepareDb();
   final db = sqlite3.open(path);
@@ -109,7 +105,6 @@ Future<bool> isFavorite(int hymnNumber) async {
   }
 }
 
-/// Adds a hymn to favorites.
 Future<bool> addFavorite(int hymnNumber) async {
   final path = await _prepareDb();
   final db = sqlite3.open(path);
@@ -127,7 +122,6 @@ Future<bool> addFavorite(int hymnNumber) async {
   }
 }
 
-/// Removes a hymn from favorites.
 Future<bool> removeFavorite(int hymnNumber) async {
   final path = await _prepareDb();
   final db = sqlite3.open(path);
@@ -145,7 +139,6 @@ Future<bool> removeFavorite(int hymnNumber) async {
   }
 }
 
-/// Toggles the favorite status for a hymn.
 Future<bool> toggleFavorite(int hymnNumber) async {
   final isFav = await isFavorite(hymnNumber);
   if (isFav) {
@@ -155,7 +148,6 @@ Future<bool> toggleFavorite(int hymnNumber) async {
   }
 }
 
-/// Returns all favorite hymns.
 Future<List<Hymn>> getFavoriteHymns() async {
   final path = await _prepareDb();
   final db = sqlite3.open(path);
@@ -178,7 +170,6 @@ Future<List<Hymn>> getFavoriteHymns() async {
   }
 }
 
-/// Fetches a hymn and includes its favorite status.
 Future<Hymn?> grabHymnWithFavorite(int n) async {
   final hymn = await grabHymn(n);
   if (hymn == null) return null;

@@ -55,11 +55,11 @@ class _SearchHymnState extends State<SearchHymn> {
     }
     ScaffoldMessenger.of(context).clearSnackBars();
     return hymn;
-  } 
+  }
 
   Future<void> printHymn() async {
     final Hymn? hymn = await grabHymnValidated();
-    if(hymn == null) {
+    if (hymn == null) {
       return;
     }
     Navigator.push(
@@ -71,13 +71,13 @@ class _SearchHymnState extends State<SearchHymn> {
 
   Future<void> addHymn() async {
     final Hymn? hymn = await grabHymnValidated();
-    if(hymn == null) {
+    if (hymn == null) {
       return;
     }
     widget.hymns.addToCart(hymn);
-     ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Added ${hymn.number}')));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Added ${hymn.number}')));
     clearAndFocus();
   }
 
@@ -99,29 +99,27 @@ class _SearchHymnState extends State<SearchHymn> {
                 hintText: 'Enter a Hymn Number',
               ),
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: .spaceAround,
-                children: [
-                  FilledButton.icon(
-                    onPressed: printHymn,
-                    icon: Icon(Icons.preview),
-                    label: Text('Preview'),
-                  ),
-                  FilledButton.icon(
-                    onPressed: clearAndFocus,
-                    label: Text('Clear'),
-                    icon: Icon(Icons.clear),
-                  ),
-                  FilledButton.icon(
-                    label: Text('Add'),
-                    icon: Icon(Icons.add),
-                    onPressed: () {
-                      addHymn();
-                    },
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: .spaceAround,
+              children: [
+                FilledButton.icon(
+                  onPressed: printHymn,
+                  icon: Icon(Icons.preview),
+                  label: Text('Preview'),
+                ),
+                FilledButton.icon(
+                  onPressed: clearAndFocus,
+                  label: Text('Clear'),
+                  icon: Icon(Icons.clear),
+                ),
+                FilledButton.icon(
+                  label: Text('Add'),
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    addHymn();
+                  },
+                ),
+              ],
             ),
           ],
         ),
